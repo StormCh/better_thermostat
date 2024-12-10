@@ -81,46 +81,34 @@ async def set_hvac_mode(self, entity_id, hvac_mode):
 
 async def get_current_offset(self, entity_id):
     """Get current offset."""
-    return float(
-        str(
-            self.hass.states.get(
-                self.real_trvs[entity_id]["local_temperature_calibration_entity"]
-            ).state
-        )
-    )
+    val = self.hass.states.get( self.real_trvs[entity_id]["local_temperature_calibration_entity"] ).state
+    if not isinstance( val , float):
+        val = 0
+    return float( str( val ) )
 
 
 async def get_offset_steps(self, entity_id):
     """Get offset steps."""
-    return float(
-        str(
-            self.hass.states.get(
-                self.real_trvs[entity_id]["local_temperature_calibration_entity"]
-            ).attributes.get("step", 1)
-        )
-    )
+    val = self.hass.states.get( self.real_trvs[entity_id]["local_temperature_calibration_entity"] ).attributes.get("step", 1)
+    if not isinstance( val , float):
+        val = 0
+    return float( str( val ) )
 
 
 async def get_min_offset(self, entity_id):
     """Get min offset."""
-    return float(
-        str(
-            self.hass.states.get(
-                self.real_trvs[entity_id]["local_temperature_calibration_entity"]
-            ).attributes.get("min", -10)
-        )
-    )
+    val = self.hass.states.get( self.real_trvs[entity_id]["local_temperature_calibration_entity"] ).attributes.get("min", -10)
+    if not isinstance( val , float):
+        val = 0
+    return float( str( val ) )
 
 
 async def get_max_offset(self, entity_id):
     """Get max offset."""
-    return float(
-        str(
-            self.hass.states.get(
-                self.real_trvs[entity_id]["local_temperature_calibration_entity"]
-            ).attributes.get("max", 10)
-        )
-    )
+    val = self.hass.states.get( self.real_trvs[entity_id]["local_temperature_calibration_entity"] ).attributes.get("max", 10)
+    if not isinstance( val , float):
+        val = 0
+    return float( str( val ) )
 
 
 async def set_offset(self, entity_id, offset):
